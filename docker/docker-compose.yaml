@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  ips:
+    build: .
+    container_name: enforcer-ips-core
+    command: python3 main.py
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+    network_mode: "host"
+
+  api:
+    build: .
+    container_name: enforcer-ips-api
+    command: python3 api/app.py
+    ports:
+      - "5000:5000"
+    depends_on:
+      - ips
+
+  dashboard:
+    build: .
+    container_name: enforcer-ips-dashboard
+    command: python3 dashboard/app.py
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./logs:/app/logs
+    depends_on:
+      - ips
