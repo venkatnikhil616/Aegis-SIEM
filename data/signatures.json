@@ -1,0 +1,48 @@
+{
+  "signatures": [
+    {
+      "id": "SIG001",
+      "name": "Telnet Access Attempt",
+      "type": "exact",
+      "conditions": {
+        "protocol": "TCP",
+        "dst_port": "23"
+      }
+    },
+    {
+      "id": "SIG002",
+      "name": "Suspicious SSH Brute Force",
+      "type": "exact",
+      "conditions": {
+        "protocol": "TCP",
+        "dst_port": "22"
+      }
+    },
+    {
+      "id": "SIG003",
+      "name": "HTTP Flood Pattern",
+      "type": "regex",
+      "conditions": {
+        "dst_port": "80",
+        "flags": "S"
+      }
+    },
+    {
+      "id": "SIG004",
+      "name": "Ping Flood (ICMP)",
+      "type": "exact",
+      "conditions": {
+        "protocol": "ICMP"
+      }
+    },
+    {
+      "id": "SIG005",
+      "name": "DNS Amplification Attempt",
+      "type": "exact",
+      "conditions": {
+        "protocol": "UDP",
+        "dst_port": "53"
+      }
+    }
+  ]
+}
